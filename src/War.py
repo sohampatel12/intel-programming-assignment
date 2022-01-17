@@ -18,14 +18,11 @@ class War:
     def start_game(self):
         war = False
         while not self.player1.is_winner() and not self.player2.is_winner():
-            if war:
-                for _ in range(3):
-                    p1_card, p2_card = self.play_cards()
-                    if self.check_game_winner(p1_card, p2_card):
-                        return
-            p1_card, p2_card = self.play_cards()
-            if self.check_game_winner(p1_card, p2_card):
-                return
+            for _ in range(4 if war else 1):
+                p1_card, p2_card = self.play_cards()
+                winner = self.check_game_winner(p1_card, p2_card)
+                if winner:
+                    return winner
             
             print(f"Your card ({self.player1.get_card_count()}):\t {p1_card}")
             print(f"Bot card ({self.player2.get_card_count()}):\t {p2_card}")
@@ -39,6 +36,7 @@ class War:
             else:
                 print("Hand winner: ", hand_winner)
                 war = False
+            print("----------------------------")
     
     def play_cards(self):
         p1_card = self.player1.play()
@@ -52,10 +50,10 @@ class War:
     def check_game_winner(self, p1_card, p2_card):
         if not p1_card:
             self.player2.set_winner(True)
-            return True
+            return self.player2
         if not p2_card:
-            self.player2.set_winner(True)
-            return True
+            self.player1.set_winner(True)
+            return self.player1
         return False
 
     def check_hand_winner(self, p1_card, p2_card):
