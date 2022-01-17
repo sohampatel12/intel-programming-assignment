@@ -1,10 +1,8 @@
 import Card, random
 
 class Deck:
-
-    cards = []
-
     def __init__(self):
+        self.cards = []
         for suit in range(4):
             for rank in range(13):
                 self.cards.append(Card.Card(suit, rank))
@@ -17,4 +15,6 @@ class Deck:
         return len(self.cards)
 
     def deal_card(self):
-        return self.cards.pop()
+        if len(self.cards) > 0:
+            return self.cards.pop()
+        return None
