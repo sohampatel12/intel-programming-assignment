@@ -17,5 +17,7 @@ Create a war object for new game and start the game
 war = War.War(deck, player1, player2)
 war.new_game()
 winner = war.start_game()
-
-print(f"{winner} wins!!")
+if winner:
+    print(f"{winner} wins!!")
+else:
+    print("Lets call it a Tie!!")

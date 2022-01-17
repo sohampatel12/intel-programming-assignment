@@ -6,6 +6,8 @@ class War:
     -----------
     Attributes:
     -----------
+    MAX_ROUNDS: int
+        Maximum number of rounds till the game is played
     player1: Player, player2: Player
         War game is played among player1 and player2
     deck: Deck
@@ -26,6 +28,7 @@ class War:
     check_hand_winner(self, p1_card, p2_card) -> Player | None
         Method used to check the winner of current hand
     """
+    __MAX_ROUNDS = 1000
     def __init__(self, deck, player1, player2):
         """
         Parameters
@@ -52,7 +55,7 @@ class War:
 
     def start_game(self):
         """
-        1. Starts the game printing results of each round
+        1. Starts the game printing results of each round (till MAX_ROUNDS/winning condition)
         2. If there is a war, 
             each player plays 4 cards and there is battle on the 4th card
             continues till a winner of the game/round
@@ -60,7 +63,9 @@ class War:
         4. Returns the winner
         """
         war = False
-        while not self.player1.is_winner() and not self.player2.is_winner():
+        rounds = 0
+        while not self.player1.is_winner() and not self.player2.is_winner() and rounds < self.__MAX_ROUNDS:
+            rounds += 1
             for _ in range(4 if war else 1):
                 p1_card, p2_card = self.play_cards()
                 winner = self.check_game_winner(p1_card, p2_card)
@@ -80,6 +85,8 @@ class War:
                 print("Hand winner: ", hand_winner)
                 war = False
             print("----------------------------")
+        if rounds == self.__MAX_ROUNDS:
+            print(f"There were no winners at the end of {self.__MAX_ROUNDS} rounds. Please restart the game!")
     
     def play_cards(self):
         """
