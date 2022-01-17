@@ -1,5 +1,33 @@
 class Player:
-    
+    """
+    A class to represent a Player
+    -----------
+    Attributes:
+    -----------
+    winner: bool
+        Represents if a player has won
+    name: str
+        Name of the player; Default: Bot
+    cards: List[Card]
+        Cards that the player currently holds
+    hands_won: List[Card]
+        Cards that the player has won
+    --------
+    Methods:
+    --------
+    play(self) -> Card | None
+        Player plays a card from cards
+        - If cards is empty, hands_won is moved to cards
+        - If both cards and hands_won is empty, returns None
+    add_card(self) -> None
+        Adds a card to Player's cards
+    add_won_card(self) -> None
+        Adds a won card to Player's hands_won
+    set_winner(self, value) -> None, is_winner(self) -> bool
+        Getter and setter for winner attribute of Player
+    get_card_count(self) -> int
+        Returns the total cards a Player has (cards + hands_won)
+    """
     def __init__(self, name="Bot"):
         self.winner = False
         self.name = name
@@ -32,6 +60,3 @@ class Player:
 
     def get_card_count(self):
         return len(self.cards) + len(self.hands_won)
-
-    def print_cards(self):
-        print(" ".join(str(card) for card in self.cards))
