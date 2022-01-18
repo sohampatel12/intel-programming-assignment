@@ -37,6 +37,7 @@ Given more time I could add the following features:
 2. Ask players to play each round instead of automatically playing
 3. Add show/hide card feature in case of a 'War'
 4. Add option to exit game in the middle of a game
+5. GUI to should the game in a Web/Mobile application.
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
