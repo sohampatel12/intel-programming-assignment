@@ -16,6 +16,10 @@ cd war-card-game/src
 ```bash
 python driver.py
 ```
+OPTIONAL: To run unit tests
+```bash
+python test.py
+```
 
 ## Assumptions
 
